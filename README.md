@@ -68,10 +68,11 @@ __Week 7:__  Prototype
 * Sent the prototypes to students for feedback.
 
 __Week 8:__ 
+* Began reviewing responses to evaluate which ideas resonated most with the target audience.
+* Started refining design directions based on student feedback.
+* Created prototype: Abacus Idea
 
-Began reviewing responses to evaluate which ideas resonated most with the target audience.
 
-Started refining design directions based on student feedback.
 
 
 
