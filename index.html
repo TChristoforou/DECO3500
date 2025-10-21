@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ActivityHub - Activities</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      background-color:#F8F7F4;min-height:100vh;display:flex;flex-direction:column
+    }
+
+    /* Top Nav */
+    .top-nav{background:#fff;padding:12px 16px;box-shadow:0 2px 4px rgba(0,0,0,.1);display:flex;justify-content:space-between;align-items:center}
+    .logo{display:flex;align-items:center;gap:8px}
+    .logo-icon{width:32px;height:32px;background:#3B82F6;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold}
+    .logo-text{font-size:20px;font-weight:bold;color:#1f2937}
+    .profile-icon{width:32px;height:32px;background:#e5e7eb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#6b7280}
+
+    /* Main */
+    .main-content{flex:1;padding:24px 16px;overflow-y:auto}
+    .page-title{font-size:24px;font-weight:bold;color:#1f2937;margin-bottom:24px}
+    .activities-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media (min-width:768px){.activities-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.activities-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (min-width:1280px){.activities-grid{grid-template-columns:repeat(4,1fr)}}
+
+    /* Cards */
+    .activity-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 4px 6px rgba(0,0,0,.1);transition:box-shadow .3s ease;display:flex;gap:16px;align-items:flex-start}
+    .activity-card:hover{box-shadow:0 8px 15px rgba(0,0,0,.15)}
+    .activity-icon{font-size:32px;flex-shrink:0}
+    .activity-info{flex:1}
+    .activity-title{font-size:18px;font-weight:600;color:#1f2937;margin-bottom:4px}
+    .activity-description{color:#6b7280;font-size:14px}
+
+    /* Bead Pipe */
+    .bead-pipe-container{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
+    .pipe-counter{font-size:14px;font-weight:600;color:#6b7280}
+    .pipe-wrapper{position:relative}
+    .pipe{width:24px;height:120px;background:#e5e7eb;border:2px solid #d1d5db;border-radius:12px;position:relative;overflow:hidden;transition:all .3s ease}
+    .pipe.full{border-color:#fbbf24;box-shadow:0 0 10px rgba(251,191,36,.4)}
+    .pipe-beads{position:absolute;bottom:4px;left:4px;right:4px;display:flex;flex-direction:column-reverse;gap:2px;align-items:center}
+    .bead{width:12px;height:12px;border-radius:50%;animation:beadBounce .6s ease-out}
+    .full-label{position:absolute;top:4px;left:0;right:0;text-align:center;font-size:10px;font-weight:bold;color:#d97706;background:rgba(254,243,199,.9);padding:2px 4px;border-radius:4px;margin:0 2px}
+    .dropping-bead{position:absolute;width:12px;height:12px;background:#3B82F6;border-radius:50%;top:-20px;left:50%;transform:translateX(-50%);animation:dropAnimation .6s ease-in forwards;z-index:10}
+
+    .join-button{width:32px;height:32px;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease;box-shadow:0 2px 4px rgba(0,0,0,.2);background:#3B82F6}
+    .join-button:hover{background:#2563eb;transform:scale(1.1);box-shadow:0 4px 8px rgba(0,0,0,.3)}
+    .join-button:disabled{background:#d1d5db;cursor:not-allowed;transform:none}
+    .join-bead{width:12px;height:12px;background:#fff;border-radius:50%}
+
+    /* Animations */
+    @keyframes beadBounce{
+      0%{transform:translateY(-10px);opacity:0}
+      50%{transform:translateY(-5px);opacity:1}
+      100%{transform:translateY(0);opacity:1}
+    }
+    @keyframes dropAnimation{
+      0%{top:-20px;opacity:1}
+      100%{top:100px;opacity:0}
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div class="logo-text">ActivityHub</div>
+    </div>
+    <div class="profile-icon">👤</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 class="page-title">Today's Activities</h2>
+    <div class="activities-grid" id="activities-container"></div>
+  </div>
+
+  <script>
+    // All activities start with 0 beads
+    const activities = [
+      { id:1, title:"Morning Yoga Class", description:"7:00 AM • Central Park", icon:"🧘", participants:0, maxCapacity:20 },
+      { id:2, title:"Book Club Meeting",  description:"2:00 PM • Coffee Bean",  icon:"📚", participants:0, maxCapacity:15 },
+      { id:3, title:"Weekend Hiking",     description:"9:00 AM • Mountain Trail", icon:"🥾", participants:0, maxCapacity:10 },
+      { id:4, title:"Cooking Workshop",   description:"6:00 PM • Community Center", icon:"👨‍🍳", participants:0, maxCapacity:20 },
+      { id:5, title:"Photography Walk",   description:"10:00 AM • Downtown", icon:"📸", participants:0, maxCapacity:8 },
+      { id:6, title:"Tennis Practice",    description:"5:00 PM • Sports Center", icon:"🎾", participants:0, maxCapacity:20 }
+    ];
+
+    const beadColors = ['#f87171','#10b981','#fbbf24','#8b5cf6','#f472b6','#6366f1','#14b8a6'];
+
+    function createBeadPipe(activity){
+      const isFull = activity.participants >= activity.maxCapacity;
+      let beadsHtml = '';
+      for(let i=0;i<activity.participants;i++){
+        const color = beadColors[i % beadColors.length];
+        beadsHtml += `<div class="bead" style="background-color:${color}"></div>`;
+      }
+      return `
+        <div class="bead-pipe-container">
+          <div class="pipe-counter">${activity.participants}/${activity.maxCapacity}</div>
+          <div class="pipe-wrapper">
+            <div class="pipe ${isFull ? 'full':''}" id="pipe-${activity.id}">
+              <div class="pipe-beads" id="beads-${activity.id}">${beadsHtml}</div>
+              ${isFull ? '<div class="full-label">FULL</div>' : ''}
+            </div>
+          </div>
+          <button class="join-button" onclick="addBead(${activity.id})" ${isFull ? 'disabled':''}>
+            <div class="join-bead"></div>
+          </button>
+        </div>
+      `;
+    }
+
+    function createActivityCard(activity){
+      return `
+        <div class="activity-card">
+          <div class="activity-icon">${activity.icon}</div>
+          <div class="activity-info">
+            <div class="activity-title">${activity.title}</div>
+            <div class="activity-description">${activity.description}</div>
+          </div>
+          ${createBeadPipe(activity)}
+        </div>
+      `;
+    }
+
+    function addBead(activityId){
+      const activity = activities.find(a => a.id === activityId);
+      if(!activity) return;
+      if(activity.participants >= activity.maxCapacity) return;
+
+      const pipe = document.getElementById(`pipe-${activityId}`);
+
+      // Drop animation
+      const droppingBead = document.createElement('div');
+      droppingBead.className = 'dropping-bead';
+      pipe.appendChild(droppingBead);
+
+      // After animation
+      setTimeout(() => {
+        droppingBead.remove();
+        activity.participants += 1;
+        renderActivities();
+      }, 600);
+    }
+
+    function renderActivities(){
+      const container = document.getElementById('activities-container');
+      container.innerHTML = activities.map(createActivityCard).join('');
+    }
+
+    renderActivities();
+  </script>
+</body>
+</html>
