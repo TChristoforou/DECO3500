@@ -1,4 +1,4 @@
-# Team 24 : Student Suport Specialist
+# Team 24 : Student Suport Specialists
 
 __Team members:__
 * Sakshi Agrawal
