@@ -13,7 +13,7 @@ It supports student well-being by encouraging meaningful social and mindful brea
 
 ---
 
-## 🧩 Project Overview
+## Project Overview
 
 **Ababreak** combines an **interactive abacus installation** with a **digital prototype** to help students take short, restorative breaks during long study sessions.  
 Each bead movement represents participation in a simple activity — like stretching, chatting, or practicing mindfulness — turning breaks into small, shared social moments.
@@ -23,12 +23,12 @@ The project aims to:
 - Encourage **social connection** between students.
 - Create a playful, low-effort way to join campus activities.
 
-📸 **Instagram page:** [@uqabreak](https://www.instagram.com/uqabreak)  
-💬 Hashtag: **#JoinTheBreak**
+ **Instagram page:** [@uqabreak](https://www.instagram.com/uqabreak)  
+Hashtag: **#JoinTheBreak**
 
 ---
 
-## 📁 Repository Contents
+## Repository Contents
 
 | Path | Description |
 |------|--------------|
@@ -39,12 +39,14 @@ The project aims to:
 | `/Presentation.pptx` | Final presentation slides |
 | `/index.html` | Interactive web prototype (digital simulation) |
 | `/README.md` | This documentation file |
+| `Wiki/Design Process Overview` | Design Process Overview|
+| `Wiki/Ethical Considerations` | Ethical Considerations|
 
 ---
 
-## 💻 Prototype Access
+## Prototype Access
 
-### 🧠 Digital Prototype
+### Digital Prototype
 A browser-based simulation of the Ababreak interface.
 
 #### How to run:
@@ -57,7 +59,7 @@ No server setup or login credentials are required.
 
 ---
 
-## 🪵 Physical Prototype (Optional for Demo)
+## Physical Prototype (Optional for Demo)
 
 A tangible abacus installation representing real-world participation in Ababreak activities.  
 Each row corresponds to a different activity type — for example:
@@ -69,7 +71,7 @@ Students move one bead on the physical abacus whenever they participate in an ac
 
 ---
 
-## 📱 Social Extension
+## Social Extension
 
 **Instagram page:** [@uqabreak](https://www.instagram.com/uqabreak)  
 Used to share:
@@ -79,7 +81,7 @@ Used to share:
 
 ---
 
-## 🧭 How to Use Ababreak
+## How to Use Ababreak
 
 1. Launch the **digital prototype** (`index.html`) or set up the **physical abacus** in a study area.  
 2. Join an activity by clicking or moving a bead.  
@@ -88,7 +90,7 @@ Used to share:
 
 ---
 
-## 🏫 Credits
+## Credits
 
 Developed as part of **DECO3500: Social and Mobile Computing**  
 **The University of Queensland**
