@@ -32,15 +32,15 @@ Hashtag: **#JoinTheBreak**
 
 | Path | Description |
 |------|--------------|
-| `/Images/` | Visual assets for flyer and poster |
-| `/DECO3500Research.pdf` | Initial research and background findings |
-| `/DECO3500_Team Charter.pdf` | Team roles, responsibilities, and collaboration plan |
-| `/Design Proposal – Research.pdf` | Detailed design proposal and rationale |
-| `/Presentation.pptx` | Final presentation slides |
-| `/index.html` | Interactive web prototype (digital simulation) |
-| `/README.md` | This documentation file |
-| `Wiki/Design Process Overview` | Design Process Overview|
-| `Wiki/Ethical Considerations` | Ethical Considerations|
+| [Images](Images/) | Visual assets for flyer and poster |
+| [DECO3500Research.pdf](DECO3500Research.pdf) | Initial research and background findings |
+| [DECO3500_Team Charter.pdf](DECO3500_Team%20Charter.pdf) | Team roles, responsibilities, and collaboration plan |
+| [Design Proposal – Research.pdf](Design%20Proposal%20–%20Research.pdf) | Detailed design proposal and rationale |
+| [Presentation.pptx](Presentation.pptx) | Final presentation slides |
+| [index.html](index.html) | Interactive web prototype (digital simulation) |
+| [README.md](README.md) | This documentation file |
+| [Wiki/Design Process Overview](Wiki/Design%20Process%20Overview) | Design Process Overview |
+| [Wiki/Ethical Considerations](Wiki/Ethical%20Considerations) | Ethical Considerations |
 
 ---
 
